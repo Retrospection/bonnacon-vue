@@ -23,39 +23,39 @@ export function fetchVideoInfo (videoId) {
         1: [
           {
             imageUrl: '../../../static/imgs/1/1_11.jpg',
-            marker: []
+            markers: []
           },
           {
             imageUrl: '../../../static/imgs/1/1_12.jpg',
-            marker: []
+            markers: []
           },
           {
             imageUrl: '../../../static/imgs/1/1_13.jpg',
-            marker: []
+            markers: []
           },
           {
             imageUrl: '../../../static/imgs/1/1_14.jpg',
-            marker: []
+            markers: []
           },
           {
             imageUrl: '../../../static/imgs/1/1_15.jpg',
-            marker: []
+            markers: []
           },
           {
             imageUrl: '../../../static/imgs/1/1_16.jpg',
-            marker: []
+            markers: []
           },
           {
             imageUrl: '../../../static/imgs/1/1_17.jpg',
-            marker: []
+            markers: []
           },
           {
             imageUrl: '../../../static/imgs/1/1_18.jpg',
-            marker: []
+            markers: []
           },
           {
             imageUrl: '../../../static/imgs/1/1_19.jpg',
-            marker: []
+            markers: []
           }
         ]
       }

@@ -2,7 +2,7 @@
 import Gallery from '@/components/gallery/gallery'
 import ContainerShow from '@/components/containershow'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'home',
@@ -11,22 +11,18 @@ export default {
     ContainerShow
   },
 
-  data: () => ({
-    containerShowLeftIndex: 0,
-    containerShowRightIndex: 0,
-    labelsLeft: [],
-    labelsRight: []
-  }),
-
   computed: {
+    ...mapState({
+      leftContainerShowState: state => state.pageState.leftContainerShow,
+      rightContainerShowState: state => state.pageState.rightContainerShow
+    }),
+
     leftContainerShowImageUrl () {
-      let video = this.$store.state.videos[1]
-      return video[this.containerShowLeftIndex].imageUrl
+      return this.$store.getters.imagePath(this.leftContainerShowState.videoId)(this.leftContainerShowState.frameNo)
     },
 
     rightContainerShowImageUrl () {
-      let video = this.$store.state.videos[1]
-      return video[this.containerShowRightIndex].imageUrl
+      return this.$store.getters.imagePath(this.rightContainerShowState.videoId)(this.rightContainerShowState.frameNo)
     }
   },
 
@@ -35,21 +31,27 @@ export default {
       'fetchVideoInfo'
     ]),
 
+    ...mapMutations([
+      'setInitialState',
+      'setLeftContainerShowFrameNo',
+      'setRightContainerShowFrameNo'
+    ]),
+
     onUpGalleryImageClicked (event) {
       let target = event.target.parentNode
       let index = target.getAttribute('data-index')
-      this.containerShowLeftIndex = Number.parseInt(index)
+      this.setLeftContainerShowFrameNo(Number.parseInt(index))
     },
 
     onDownGalleryImageClicked (event) {
       let target = event.target.parentNode
       let index = target.getAttribute('data-index')
-      this.containerShowRightIndex = Number.parseInt(index)
+      this.setRightContainerShowFrameNo(Number.parseInt(index))
     }
   },
 
-  mounted () {
-    this.fetchVideoInfo(1)
+  created () {
+    this.setInitialState()
   }
 }
 </script>
