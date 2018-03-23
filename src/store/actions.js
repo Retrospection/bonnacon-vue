@@ -15,13 +15,14 @@ export const actions = {
   },
 
   changeContainerShowFrame ({ commit, state }, { containerShowId, galleryIndex }) {
+    console.log('container index: ', containerShowId)
     if (containerShowId === 0) {
-      let videoId = state.upGallery.videoId
-      let frameNo = state.upGallery.frameNos[galleryIndex]
+      let videoId = state.pageState.upGallery.videoId
+      let frameNo = state.pageState.upGallery.frameNos[galleryIndex]
       commit('setContainerShowFrameInfo', { containerShowId, videoId, frameNo })
     } else if (containerShowId === 1) {
-      let videoId = state.downGallery.videoId
-      let frameNo = state.downGallery.frameNos[galleryIndex]
+      let videoId = state.pageState.downGallery.videoId
+      let frameNo = state.pageState.downGallery.frameNos[galleryIndex]
       commit('setContainerShowFrameInfo', { containerShowId, videoId, frameNo })
     }
   },
@@ -33,11 +34,8 @@ export const actions = {
 
   addNewMarker ({ state, dispatch, commit }, { containerShowId, videoId, frameNo, marker }) {
     commit('addMarker', { videoId, frameNo, marker })
-    commit('setContainerShowFrameInfo', {
-      containerShowId: containerShowId,
-      videoId: state.pageState.leftContainerShow.videoId,
-      frameNo: state.pageState.leftContainerShow.frameNo
-    })
+    commit('setContainerShowFrameInfo', { containerShowId, videoId, frameNo })
+    // 如果左右两侧的videoId相等，则在左侧画了框应当立即同步到右侧
   },
 
   chooseMarker ({ dispatch, commit }, { containerShowId, markerIndex }) {

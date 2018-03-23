@@ -116,9 +116,15 @@ export const state = {
     * frameNos: []
     *
     */
-    upGallery: {},
+    upGallery: {
+      videoId: 1,
+      frameNos: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    },
 
-    downGallery: {}
+    downGallery: {
+      videoId: 1,
+      frameNos: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
 
   }
 }

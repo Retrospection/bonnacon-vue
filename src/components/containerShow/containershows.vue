@@ -10,7 +10,7 @@ export default {
   computed: {
     ...mapState({
       leftContainerShowState: state => state.pageState.leftContainerShow,
-      rightContainerShowState: state => state.pageState.rightContainerShow,
+      rightContainerShowState: state => state.pageState.rightContainerShow
     })
   }
 }
