@@ -53,6 +53,14 @@ export default {
   box-shadow: 0 0 1px 1px yellow;
 }
 
+.marker-chosen {
+  position: absolute;
+  border-style: solid;
+  border-width: 3px;
+  z-index: 10;
+  box-shadow: 0 0 1px 1px yellow;
+}
+
 .corner {
   position: absolute;
   width: 1.5px;

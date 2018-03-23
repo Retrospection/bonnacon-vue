@@ -14,7 +14,8 @@ export default {
   methods: {
     ...mapActions([
       'fetchVideoInfo',
-      'setInitialState'
+      'setInitialState',
+      'changeContainerShowFrame'
     ]),
 
     ...mapMutations([
@@ -25,13 +26,13 @@ export default {
     onUpGalleryImageClicked (event) {
       let target = event.target.parentNode
       let index = target.getAttribute('data-index')
-      this.setLeftContainerShowFrameNo(Number.parseInt(index))
+      this.changeContainerShowFrame({ containerShowId: 0, galleryIndex: Number.parseInt(index) })
     },
 
     onDownGalleryImageClicked (event) {
       let target = event.target.parentNode
       let index = target.getAttribute('data-index')
-      this.setRightContainerShowFrameNo(Number.parseInt(index))
+      this.changeContainerShowFrame({ containerShowId: 0, galleryIndex: Number.parseInt(index) })
     }
   },
 

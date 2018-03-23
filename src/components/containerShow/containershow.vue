@@ -8,7 +8,8 @@ import { mapActions } from 'vuex'
 export default {
   name: 'containershow',
   components: { BoundingBox },
-  props: ['imageUrl', 'boundingBoxes', 'videoId', 'frameNo'],
+  props: ['identity', 'imageUrl', 'boundingBoxes', 'videoId', 'frameNo'],
+
   data: () => {
     return {
       drawingState: false,
@@ -17,20 +18,20 @@ export default {
   },
 
   computed: {
-
     allBoxes () {
       if (this.drawingState === false) {
+        console.log(this.boundingBoxes)
         return this.boundingBoxes
       }
       return _.concat(this.boundingBoxes, this.drawingBox)
     }
-
   },
 
   methods: {
     ...mapActions([
       'addNewMarker'
     ]),
+
     onMouseDown (event) {
       if (this.drawingState) {
         return
@@ -78,12 +79,16 @@ export default {
       let _drawingBox = {}
       _.assign(_drawingBox, this.drawingBox)
       console.log(this.videoId, this.frameNo, _drawingBox)
-      this.addNewMarker({videoId: this.videoId, frameNo: this.frameNo, marker: _drawingBox})
+      this.addNewMarker({containerShowId: Number.parseInt(this.identity), videoId: this.videoId, frameNo: this.frameNo, marker: _drawingBox})
       this.drawingBox = {}
     },
 
     onBoundingBoxClicked (event) {
-      console.log('bounding box clicked!')
+      if (event.target.getAttribute('class') !== 'marker' || event.target.getAttribute('class') !== 'marker-chosen') {
+        return
+      }
+      let markerIndex = event.target.getAttribute('data-index')
+      console.log('marker index: ', markerIndex)
     }
   }
 }
@@ -92,23 +97,25 @@ export default {
 <template>
 <div class="container">
   <div class="image-wrapper">
-      <div
+    <div
       class="position-helper"
       v-on:mousedown="onMouseDown"
       v-on:mousemove="onMouseMove"
-      v-on:mouseup="onMouseUp">
-        <img class="container-show-image" :src="imageUrl" alt="Container show image" ref="image">
-        <BoundingBox
-          v-for="(box, index) in allBoxes"
-          :key="box.id"
-          :data-index="index"
-          :boxPosition="box.position"
-          :boxColor="box.color"
-          :isChosen="box.chosen"
-          :personId="box.personId"
-          :onClick="onBoundingBoxClicked">
-        </BoundingBox>
-      </div>
+      v-on:mouseup="onMouseUp"
+      >
+      <img class="container-show-image" :src="imageUrl" alt="Container show image" ref="image">
+      <BoundingBox
+        v-for="(box, index) in allBoxes"
+        :key="box.id"
+        :data-index="index"
+        :boxPosition="box.position"
+        :boxColor="box.color"
+        :isChosen="box.chosen"
+        :personId="box.personId"
+        :onClick="onBoundingBoxClicked"
+        >
+      </BoundingBox>
+    </div>
   </div>
 </div>
 </template>

@@ -99,6 +99,7 @@ export const state = {
     /*
      * videoId: 1,
      * frameNo: 1,
+     * imageUrl: imageUrl: '../../static/imgs/1/1_1.jpg', // new
      * markers: [{
      *   personId: 1,
      *   position: [0, 0, 50, 50],
@@ -108,7 +109,16 @@ export const state = {
      */
     leftContainerShow: {},
 
-    rightContainerShow: {}
+    rightContainerShow: {},
+
+    /*
+    * videoId: 1,
+    * frameNos: []
+    *
+    */
+    upGallery: {},
+
+    downGallery: {}
 
   }
 }

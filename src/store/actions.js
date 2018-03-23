@@ -1,6 +1,5 @@
 
 import {fetchVideoInfo} from '../common/api'
-import {COLORS, getVideoId} from '../common/util'
 
 export const actions = {
 
@@ -15,51 +14,37 @@ export const actions = {
       })
   },
 
-  setInitialState ({ dispatch, state }) {
-    dispatch('updateLeftContainerShow', {videoId: 1, frameNo: 1})
-    dispatch('updateRightContainerShow', {videoId: 1, frameNo: 2})
-  },
-
-  updateRightContainerShow ({ state }, { videoId, frameNo }) {
-    let rightContainerShowInitInfo = state.videos[videoId - 1][frameNo - 1]
-    let rightMarkerState = rightContainerShowInitInfo.markers.map(marker => ({
-      ...marker,
-      chosen: false,
-      color: COLORS[marker.personId % 7]
-    }))
-
-    state.pageState.rightContainerShow = {
-      videoId: getVideoId(rightContainerShowInitInfo.imageUrl),
-      frameNo: 2,
-      markers: rightMarkerState
+  changeContainerShowFrame ({ commit, state }, { containerShowId, galleryIndex }) {
+    if (containerShowId === 0) {
+      let videoId = state.upGallery.videoId
+      let frameNo = state.upGallery.frameNos[galleryIndex]
+      commit('setContainerShowFrameInfo', { containerShowId, videoId, frameNo })
+    } else if (containerShowId === 1) {
+      let videoId = state.downGallery.videoId
+      let frameNo = state.downGallery.frameNos[galleryIndex]
+      commit('setContainerShowFrameInfo', { containerShowId, videoId, frameNo })
     }
   },
 
-  updateLeftContainerShow ({ state }, { videoId, frameNo }) {
-    let leftContainerShowInitInfo = state.videos[videoId - 1][frameNo - 1]
-    let leftMarkerState = leftContainerShowInitInfo.markers.map(marker => ({
-      ...marker,
-      chosen: false,
-      color: COLORS[marker.personId % 7]
-    }))
-
-    state.pageState.leftContainerShow = {
-      videoId: getVideoId(leftContainerShowInitInfo.imageUrl),
-      frameNo: 1,
-      markers: leftMarkerState
-    }
+  setInitialState ({ commit }) {
+    commit('setContainerShowFrameInfo', { containerShowId: 0, videoId: 1, frameNo: 1 })
+    commit('setContainerShowFrameInfo', { containerShowId: 1, videoId: 1, frameNo: 2 })
   },
 
-  addNewMarker ({ state, dispatch, commit }, { videoId, frameNo, marker }) {
+  addNewMarker ({ state, dispatch, commit }, { containerShowId, videoId, frameNo, marker }) {
     commit('addMarker', { videoId, frameNo, marker })
-    dispatch('updateLeftContainerShow', {
+    commit('setContainerShowFrameInfo', {
+      containerShowId: containerShowId,
       videoId: state.pageState.leftContainerShow.videoId,
       frameNo: state.pageState.leftContainerShow.frameNo
     })
-    dispatch('updateRightContainerShow', {
-      videoId: state.pageState.rightContainerShow.videoId,
-      frameNo: state.pageState.rightContainerShow.frameNo
-    })
-  }
+  },
 
+  chooseMarker ({ dispatch, commit }, { containerShowId, markerIndex }) {
+    commit('setMarkerChosenState', { containerShowId, markerIndex, isChosen: true })
+  },
+
+  unchooseMarker ({ dispatch, commit }, { containerShowId, markerIndex }) {
+    commit('setMarkerChosenState', { containerShowId, markerIndex, isChosen: false })
+  }
 }

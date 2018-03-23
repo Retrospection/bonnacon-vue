@@ -7,35 +7,30 @@ import { mapState } from 'vuex'
 export default {
   name: 'ContainerShows',
   components: { ContainerShow },
-
   computed: {
     ...mapState({
       leftContainerShowState: state => state.pageState.leftContainerShow,
-      rightContainerShowState: state => state.pageState.rightContainerShow
-    }),
-
-    leftContainerShowImageUrl () {
-      return this.$store.getters.imagePath(this.leftContainerShowState.videoId)(this.leftContainerShowState.frameNo)
-    },
-
-    rightContainerShowImageUrl () {
-      return this.$store.getters.imagePath(this.rightContainerShowState.videoId)(this.rightContainerShowState.frameNo)
-    }
+      rightContainerShowState: state => state.pageState.rightContainerShow,
+    })
   }
 }
 </script>
 
 <template>
   <div class="container-show">
-    <ContainerShow id="left-container-show"
-      :image-url="leftContainerShowImageUrl"
+    <ContainerShow
+      id="left-container-show"
+      identity="0"
+      :image-url="leftContainerShowState.imageUrl"
       :boundingBoxes="leftContainerShowState.markers"
       :video-id="leftContainerShowState.videoId"
       :frame-no="leftContainerShowState.frameNo"
       >
       </ContainerShow>
-    <ContainerShow id="right-container-show"
-      :image-url="rightContainerShowImageUrl"
+    <ContainerShow
+      id="right-container-show"
+      identity="1"
+      :image-url="rightContainerShowState.imageUrl"
       :bounding-boxes="rightContainerShowState.markers"
       :video-id="rightContainerShowState.videoId"
       :frame-no="rightContainerShowState.frameNo"
