@@ -1,38 +1,23 @@
 <script>
 import Gallery from '@/components/gallery/gallery'
-import ContainerShow from '@/components/containershow'
+import ContainerShows from '@/components/containerShow/containershows'
 
-import { mapActions, mapMutations, mapState } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'home',
   components: {
     Gallery,
-    ContainerShow
-  },
-
-  computed: {
-    ...mapState({
-      leftContainerShowState: state => state.pageState.leftContainerShow,
-      rightContainerShowState: state => state.pageState.rightContainerShow
-    }),
-
-    leftContainerShowImageUrl () {
-      return this.$store.getters.imagePath(this.leftContainerShowState.videoId)(this.leftContainerShowState.frameNo)
-    },
-
-    rightContainerShowImageUrl () {
-      return this.$store.getters.imagePath(this.rightContainerShowState.videoId)(this.rightContainerShowState.frameNo)
-    }
+    ContainerShows
   },
 
   methods: {
     ...mapActions([
-      'fetchVideoInfo'
+      'fetchVideoInfo',
+      'setInitialState'
     ]),
 
     ...mapMutations([
-      'setInitialState',
       'setLeftContainerShowFrameNo',
       'setRightContainerShowFrameNo'
     ]),
@@ -59,10 +44,7 @@ export default {
 <template>
 <div id="home">
   <Gallery class="gallery" :on-gallery-image-clicked="onUpGalleryImageClicked"></Gallery>
-  <div class="container-show">
-    <ContainerShow id="left-container-show" :image-url="leftContainerShowImageUrl"></ContainerShow>
-    <ContainerShow id="right-container-show" :image-url="rightContainerShowImageUrl"></ContainerShow>
-  </div>
+  <ContainerShows></ContainerShows>
   <Gallery class="gallery" :on-gallery-image-clicked="onDownGalleryImageClicked"></Gallery>
 </div>
 </template>
@@ -76,24 +58,8 @@ export default {
   flex: 1;
 }
 
-.container-show {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex: 3 1 auto;
-  padding: 50px;
-}
-
 .gallery {
   display: flex;
-  flex: 1 1 auto;
-}
-
-#left-container-show {
-  flex: 1 1 auto;
-}
-
-#right-container-show {
   flex: 1 1 auto;
 }
 </style>

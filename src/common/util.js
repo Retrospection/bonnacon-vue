@@ -5,5 +5,12 @@ export const COLORS = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purp
 
 export function getVideoId (url) {
   let result = _.split(url, '/')
-  return _.nth(result, -2)
+  return Number.parseInt(_.nth(result, -2))
+}
+
+export function getClientPositionOf (el) {
+  let boundingClientRect = el.getBoundingClientRect()
+  let x = boundingClientRect.left
+  let y = boundingClientRect.top
+  return [x, y]
 }

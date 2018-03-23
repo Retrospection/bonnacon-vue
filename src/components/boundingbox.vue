@@ -1,30 +1,31 @@
 <script>
 export default {
   name: 'bondingbox',
-  props: ['markerPosition', 'markerColor'],
+  props: ['boxPosition', 'boxColor', 'isChosen', 'personId', 'onClick'],
   computed: {
     markerStyle () {
-      if (this.markerPosition === undefined) {
+      if (this.boxPosition === undefined) {
         return {}
       }
-      let top = this.markerPosition.top || '0'
-      let left = this.markerPosition.left || '0'
-      let width = this.markerPosition.width || '0'
-      let height = this.markerPosition.height || '0'
+
+      let left = this.boxPosition[0] || '0'
+      let top = this.boxPosition[1] || '0'
+      let width = this.boxPosition[2] || '0'
+      let height = this.boxPosition[3] || '0'
 
       let ret = {
         top: top.toString() + 'px',
         left: left.toString() + 'px',
         width: width.toString() + 'px',
         height: height.toString() + 'px',
-        borderColor: this.markerColor
+        borderColor: this.boxColor
       }
       return ret
     },
 
     cornerStyle () {
       return {
-        borderColor: this.markerColor
+        borderColor: this.boxColor
       }
     }
   }
@@ -32,11 +33,11 @@ export default {
 </script>
 
 <template>
-<div class="marker" :style="markerStyle">
-  <div id="tl" class="corner" :style="cornerStyle"></div>
-  <div id="tr" class="corner" :style="cornerStyle"></div>
-  <div id="bl" class="corner" :style="cornerStyle"></div>
-  <div id="br" class="corner" :style="cornerStyle"></div>
+<div class="marker" :style="markerStyle" v-on:click="onClick">
+  <div id="tl" class="corner" :style="cornerStyle" v-if="isChosen"></div>
+  <div id="tr" class="corner" :style="cornerStyle" v-if="isChosen"></div>
+  <div id="bl" class="corner" :style="cornerStyle" v-if="isChosen"></div>
+  <div id="br" class="corner" :style="cornerStyle" v-if="isChosen"></div>
 </div>
 </template>
 
@@ -46,6 +47,10 @@ export default {
   border-style: solid;
   border-width: 3px;
   z-index: 10;
+}
+
+.marker:hover {
+  box-shadow: 0 0 1px 1px yellow;
 }
 
 .corner {
