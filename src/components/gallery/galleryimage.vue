@@ -16,12 +16,15 @@ export default {
 <style scoped>
 
 .gallery-image-container {
-  margin: 0;
-  padding: 0 4px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .gallery-image {
-  max-width: 100%;
+  max-height: 100%;
+  margin: 0 -10px;
+  position: relative;
+  left: 20px;
 }
 
 </style>

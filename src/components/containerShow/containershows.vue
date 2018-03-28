@@ -46,7 +46,6 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   flex: 3 1 auto;
-  padding: 50px;
 }
 
 #left-container-show {

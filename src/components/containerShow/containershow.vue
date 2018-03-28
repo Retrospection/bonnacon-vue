@@ -92,11 +92,6 @@ export default {
 
 <template>
 <div class="container">
-  <div class="lastFrameButton">
-    <div class="content">
-      上一帧
-    </div>
-  </div>
   <div class="image-wrapper">
     <div
       class="position-helper"
@@ -118,11 +113,7 @@ export default {
       </BoundingBox>
     </div>
   </div>
-  <div class="nextFrameButton">
-    <div class="content">
-      下一帧
-    </div>
-  </div>
+
 </div>
 </template>
 
@@ -135,7 +126,7 @@ export default {
 
 .image-wrapper {
   flex: 4 1 auto;
-  max-width: 640px;
+  max-width: 90%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -145,32 +136,9 @@ export default {
   position: relative;
 }
 
-.lastFrameButton {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.container-show-image {
+  width: 100%;
 }
 
-.nextFrameButton {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.content {
-  width: 1.5rem;
-  height: 4rem;
-  border: solid 1px black;
-  padding: 0.5rem;
-}
-
-.content:hover {
-  border: solid 1px red;
-  color: red;
-  cursor: pointer;
-
-}
 
 </style>
