@@ -20,7 +20,6 @@ export default {
   computed: {
     allBoxes () {
       if (this.drawingState === false) {
-        console.log(this.boundingBoxes)
         return this.boundingBoxes
       }
       return _.concat(this.boundingBoxes, this.drawingBox)
@@ -78,17 +77,14 @@ export default {
       this.drawingState = false
       let _drawingBox = {}
       _.assign(_drawingBox, this.drawingBox)
-      console.log(this.videoId, this.frameNo, _drawingBox)
       this.addNewMarker({containerShowId: Number.parseInt(this.identity), videoId: this.videoId, frameNo: this.frameNo, marker: _drawingBox})
       this.drawingBox = {}
     },
 
     onBoundingBoxClicked (event) {
-      if (event.target.getAttribute('class') !== 'marker' || event.target.getAttribute('class') !== 'marker-chosen') {
-        return
-      }
-      let markerIndex = event.target.getAttribute('data-index')
-      console.log('marker index: ', markerIndex)
+      // if (event.target.getAttribute('class') !== 'marker' || event.target.getAttribute('class') !== 'marker-chosen') {
+      //   return
+      // }
     }
   }
 }
@@ -96,6 +92,11 @@ export default {
 
 <template>
 <div class="container">
+  <div class="lastFrameButton">
+    <div class="content">
+      上一帧
+    </div>
+  </div>
   <div class="image-wrapper">
     <div
       class="position-helper"
@@ -117,6 +118,11 @@ export default {
       </BoundingBox>
     </div>
   </div>
+  <div class="nextFrameButton">
+    <div class="content">
+      下一帧
+    </div>
+  </div>
 </div>
 </template>
 
@@ -128,7 +134,7 @@ export default {
 }
 
 .image-wrapper {
-  flex: 1 1 auto;
+  flex: 4 1 auto;
   max-width: 640px;
   display: flex;
   justify-content: center;
@@ -137,6 +143,34 @@ export default {
 
 .position-helper {
   position: relative;
+}
+
+.lastFrameButton {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nextFrameButton {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  width: 1.5rem;
+  height: 4rem;
+  border: solid 1px black;
+  padding: 0.5rem;
+}
+
+.content:hover {
+  border: solid 1px red;
+  color: red;
+  cursor: pointer;
+
 }
 
 </style>

@@ -26,7 +26,6 @@ export default {
     onUpGalleryImageClicked (event) {
       let target = event.target.parentNode
       let index = target.getAttribute('data-index')
-      console.log(index)
       this.changeContainerShowFrame({ containerShowId: 0, galleryIndex: Number.parseInt(index) })
     },
 

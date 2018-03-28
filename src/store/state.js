@@ -30,19 +30,19 @@ export const state = {
         markers: [
           {
             personId: 1,
-            position: [0, 0, 50, 50]
+            position: [10, 10, 50, 50]
           },
           {
             personId: 2,
-            position: [13, 24, 66, 56]
+            position: [23, 24, 66, 56]
           },
           {
             personId: 4,
-            position: [130, 254, 63, 87]
+            position: [56, 76, 63, 87]
           },
           {
             personId: 3,
-            position: [87, 90, 125, 67]
+            position: [45, 12, 125, 67]
           }
         ]
       },
@@ -51,19 +51,19 @@ export const state = {
         markers: [
           {
             personId: 1,
-            position: [0, 0, 50, 50]
+            position: [32, 12, 50, 60]
           },
           {
             personId: 2,
-            position: [13, 24, 66, 56]
+            position: [15, 74, 43, 56]
           },
           {
             personId: 4,
-            position: [130, 254, 63, 87]
+            position: [88, 254, 73, 87]
           },
           {
             personId: 3,
-            position: [87, 90, 125, 67]
+            position: [87, 90, 56, 67]
           }
         ]
       },
