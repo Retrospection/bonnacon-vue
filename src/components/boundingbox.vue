@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'bondingbox',
+  name: 'boundingbox',
   props: ['boxPosition', 'boxColor', 'isChosen', 'personId', 'onClick'],
   computed: {
     markerStyle () {

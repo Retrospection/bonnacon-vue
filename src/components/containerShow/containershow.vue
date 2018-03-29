@@ -1,14 +1,18 @@
 <script>
 
 import BoundingBox from '@/components/boundingbox'
+import SmallCircle from '@/components/smallcircle'
+import LeftArrow from '@/components/leftarrow'
+import RightArrow from '@/components/rightarrow'
+
 import * as _ from 'lodash'
 import { getClientPositionOf } from '@/common/util'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'containershow',
-  components: { BoundingBox },
-  props: ['identity', 'imageUrl', 'boundingBoxes', 'videoId', 'frameNo'],
+  components: { BoundingBox, SmallCircle, LeftArrow, RightArrow },
+  props: ['identity', 'imageUrl', 'boundingBoxes', 'videoId', 'frameNo', 'isSmallCirclesLeft'],
 
   data: () => {
     return {
@@ -97,8 +101,7 @@ export default {
       class="position-helper"
       v-on:mousedown="onMouseDown"
       v-on:mousemove="onMouseMove"
-      v-on:mouseup="onMouseUp"
-      >
+      v-on:mouseup="onMouseUp">
       <img class="container-show-image" :src="imageUrl" alt="Container show image" ref="image">
       <BoundingBox
         v-for="(box, index) in allBoxes"
@@ -108,9 +111,15 @@ export default {
         :boxColor="box.color"
         :isChosen="box.chosen"
         :personId="box.personId"
-        :onClick="onBoundingBoxClicked"
-        >
+        :onClick="onBoundingBoxClicked">
       </BoundingBox>
+    </div>
+    <div class="arrow-container">
+      <left-arrow />
+      <right-arrow />
+    </div>
+    <div :class="[isSmallCirclesLeft ? 'small-circles-left' : 'small-circles-right', errorClass]">
+      <small-circle />
     </div>
   </div>
 
@@ -140,5 +149,23 @@ export default {
   width: 100%;
 }
 
+.arrow-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
 
+
+
+.small-circles-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.small-circles-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 </style>

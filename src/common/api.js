@@ -1,21 +1,4 @@
 
-// export function fetchVideoInfo (videoId) {
-//   return fetch()
-//     .then(res => {
-//       return res.json()
-//     })
-// }
-
-// '../../../static/imgs/1/1_1.jpg',
-// '../../../static/imgs/1/1_2.jpg',
-// '../../../static/imgs/1/1_3.jpg',
-// '../../../static/imgs/1/1_4.jpg',
-// '../../../static/imgs/1/1_5.jpg',
-// '../../../static/imgs/1/1_6.jpg',
-// '../../../static/imgs/1/1_7.jpg',
-// '../../../static/imgs/1/1_8.jpg',
-// '../../../static/imgs/1/1_9.jpg'
-
 export function fetchVideoInfo (videoId) {
   return new Promise(function (resolve) {
     setTimeout(function () {

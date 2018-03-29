@@ -25,6 +25,7 @@ export default {
       :boundingBoxes="leftContainerShowState.markers"
       :video-id="leftContainerShowState.videoId"
       :frame-no="leftContainerShowState.frameNo"
+      :is-small-circles-left=true
       >
       </ContainerShow>
     <ContainerShow
@@ -34,6 +35,7 @@ export default {
       :bounding-boxes="rightContainerShowState.markers"
       :video-id="rightContainerShowState.videoId"
       :frame-no="rightContainerShowState.frameNo"
+      :is-small-circles-left=false
       >
       </ContainerShow>
   </div>

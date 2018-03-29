@@ -9,19 +9,19 @@ export const state = {
         markers: [
           {
             personId: 1,
-            position: [0, 0, 50, 50]
+            position: [0, 0, 0.21, 0.17]
           },
           {
             personId: 2,
-            position: [13, 24, 66, 56]
+            position: [0.01, 0.24, 0.13, 0.31]
           },
           {
             personId: 4,
-            position: [130, 254, 63, 87]
+            position: [0.16, 0.74, 0.2, 0.1]
           },
           {
             personId: 3,
-            position: [87, 90, 125, 67]
+            position: [0.4, 0.13, 0.32, 0.3]
           }
         ]
       },
@@ -30,19 +30,19 @@ export const state = {
         markers: [
           {
             personId: 1,
-            position: [10, 10, 50, 50]
+            position: [0, 0, 0.33, 0.21]
           },
           {
             personId: 2,
-            position: [23, 24, 66, 56]
+            position: [0.14, 0.24, 0.13, 0.31]
           },
           {
             personId: 4,
-            position: [56, 76, 63, 87]
+            position: [0.16, 0.65, 0.2, 0.1]
           },
           {
             personId: 3,
-            position: [45, 12, 125, 67]
+            position: [0.3, 0.13, 0.32, 0.3]
           }
         ]
       },
@@ -51,29 +51,63 @@ export const state = {
         markers: [
           {
             personId: 1,
-            position: [32, 12, 50, 60]
+            position: [0.06, 0.81, 0.21, 0.17]
           },
           {
             personId: 2,
-            position: [15, 74, 43, 56]
+            position: [0.01, 0.24, 0.31, 0.31]
           },
           {
             personId: 4,
-            position: [88, 254, 73, 87]
+            position: [0.16, 0.74, 0.2, 0.1]
           },
           {
             personId: 3,
-            position: [87, 90, 56, 67]
+            position: [0.4, 0.13, 0.32, 0.3]
           }
         ]
       },
       {
         imageUrl: '../../static/imgs/1/1_4.jpg',
-        markers: []
+        markers: [
+          {
+            personId: 1,
+            position: [0, 0, 0.24, 0.27]
+          },
+          {
+            personId: 2,
+            position: [0.11, 0.24, 0.16, 0.21]
+          },
+          {
+            personId: 4,
+            position: [0.18, 0.44, 0.21, 0.21]
+          },
+          {
+            personId: 3,
+            position: [0.2, 0.5, 0.36, 0.43]
+          }
+        ]
       },
       {
         imageUrl: '../../static/imgs/1/1_5.jpg',
-        markers: []
+        markers: [
+          {
+            personId: 1,
+            position: [0.5, 0.32, 0.21, 0.17]
+          },
+          {
+            personId: 2,
+            position: [0.21, 0.28, 0.23, 0.31]
+          },
+          {
+            personId: 4,
+            position: [0.26, 0.44, 0.12, 0.41]
+          },
+          {
+            personId: 3,
+            position: [0.4, 0.23, 0.15, 0.3]
+          }
+        ]
       },
       {
         imageUrl: '../../static/imgs/1/1_6.jpg',
@@ -91,7 +125,8 @@ export const state = {
         imageUrl: '../../static/imgs/1/1_9.jpg',
         markers: []
       }
-    ]],
+    ]
+  ],
 
   // 存储当前应用程序状态
   pageState: {
@@ -100,6 +135,8 @@ export const state = {
      * videoId: 1,
      * frameNo: 1,
      * imageUrl: imageUrl: '../../static/imgs/1/1_1.jpg', // new
+     * width: xxx,
+     * height: xxx,
      * markers: [{
      *   personId: 1,
      *   position: [0, 0, 50, 50],
